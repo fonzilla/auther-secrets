@@ -3,6 +3,7 @@
 var router = require('express').Router();
 var session = require('express-session');
 var passport = require('passport');
+var secrets = require('../auth/secrets.js');
 
 var User = require('../api/users/user.model');
 
@@ -19,7 +20,7 @@ router.use(function (req, res, next) {
 });
 
 router.use(session({
-  secret: 'tongiscool',
+  secret: secrets.session,
   resave: false,
   saveUninitialized: false
 }));
