@@ -11,6 +11,8 @@ router.post('/login', function (req, res, next) {
   })
   .then(function (user) {
     if (!user) throw HttpError(401);
+    console.log("SESSION", req.session);
+    console.log("USER", user);
     req.login(user, function (err) {
       if (err) next(err);
       else res.json(user);

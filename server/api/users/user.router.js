@@ -17,11 +17,14 @@ router.param('id', function (req, res, next, id) {
 });
 
 router.get('/', function (req, res, next) {
-  User.findAll({})
-  .then(function (users) {
-    res.json(users);
-  })
-  .catch(next);
+  if(!req.user){res.send(404);
+  }else{
+    User.findAll({})
+    .then(function (users) {
+      res.json(users);
+    })
+    .catch(next);
+  };
 });
 
 router.post('/', function (req, res, next) {
